@@ -2,20 +2,19 @@
 
 public class BouncePad : MonoBehaviour 
 {
+	[SerializeField] private float _Speed = 0.0f;
 	[SerializeField] private float _CullBoundary = 0.0f;
 	
+	private PadPool _Pool = null;
 	private Transform _Transform = null;
 	private Rigidbody2D _Rigidbody2D = null;
 
-	private void Awake ()
-	{
-		Initialise();
-	}
-
-	private void Initialise ()
+	public void Initialise (PadPool pool)
 	{
 		_Transform = GetComponent<Transform> ();
 		_Rigidbody2D = GetComponent<Rigidbody2D> ();
+
+		_Pool = pool;
 	}
 
 	private void Start ()
@@ -25,14 +24,20 @@ public class BouncePad : MonoBehaviour
 
 	private void SetDefaults ()
 	{
-		_Rigidbody2D.gravityScale = 1.0f;
-		_Rigidbody2D.isKinematic = false;
+		_Rigidbody2D.gravityScale = 0.0f;
+		_Rigidbody2D.isKinematic = true;
 		_Rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
 	}
 
 	private void Update ()
 	{
+		Move();
 		CheckPosition();
+	}
+
+	private void Move ()
+	{
+		_Rigidbody2D.MovePosition (_Transform.position + -_Transform.up * _Speed * Time.deltaTime);
 	}
 
 	private void CheckPosition ()
@@ -49,6 +54,6 @@ public class BouncePad : MonoBehaviour
 
 	private void Cull ()
 	{
-		Destroy(this.gameObject);
+		_Pool.ReturnToPool (this);
 	}
 }
