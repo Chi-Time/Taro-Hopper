@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class PadPool : MonoBehaviour 
+[System.Serializable]
+public class PadPool 
 {
 	[SerializeField] private int _PoolSize = 0;
 	[SerializeField] private BouncePad _PadPrefab = null;
@@ -9,9 +10,10 @@ public class PadPool : MonoBehaviour
 	[SerializeField] private List<BouncePad> _ActivePads = new List<BouncePad> ();
  	[SerializeField] private List<BouncePad> _InactivePads = new List <BouncePad> ();
 
-	private void Initialise ()
+	/// Faux constructor for class.
+	public void Initialise ()
 	{
-		GeneratePool();
+		GeneratePool ();
 	}
 
 	private void GeneratePool ()
@@ -24,13 +26,14 @@ public class PadPool : MonoBehaviour
 
 	private BouncePad CreatePad (Transform parent, int index)
 	{
-		var go = (GameObject)Instantiate (_PadPrefab.gameObject, Vector3.zero, Quaternion.identity);
+		var go = (GameObject)Object.Instantiate (_PadPrefab.gameObject, Vector3.zero, Quaternion.identity);
 		go.name = index + " Bounce Pad";
 		go.transform.SetParent (parent);
 		go.SetActive (false);
 
 		// Add pool reference to pad.
 		var pad = go.GetComponent<BouncePad> ();
+		pad.Initialise (this);
 
 		return pad;
 	}
