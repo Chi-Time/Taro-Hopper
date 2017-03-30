@@ -3,9 +3,9 @@ using System.Collections;
 
 public class BouncePad : MonoBehaviour
 {
-	[SerializeField] private float _Speed = 0.0f;
+	[SerializeField] private float _Speed = 2.0f;
 	[SerializeField] private float _FadeTime = 1.0f;
-	[SerializeField] private float _CullBoundary = 0.0f;
+	[SerializeField] private float _CullBoundary = 10.0f;
 	
 	private PadPool _Pool = null;
 	private Transform _Player = null;
