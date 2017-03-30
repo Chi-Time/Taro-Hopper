@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Speed: 2
-  _CullBoundary: -7
+  _CullBoundary: 10
 --- !u!212 &212476199768884900
 SpriteRenderer:
   m_ObjectHideFlags: 1
