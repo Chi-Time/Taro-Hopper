@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Awake ()
 	{
-		Initialise();
+		Initialise ();
 	}
 
 	private void Initialise ()
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Start ()
 	{
-		SetDefaults();
+		SetDefaults ();
 	}
 
 	private void SetDefaults ()
@@ -34,19 +34,27 @@ public class PlayerController : MonoBehaviour
 
 	private void Update ()
 	{
-		GetInput();
+		GetInput ();
 	}
 
 	private void GetInput ()
 	{
-		float x = Input.GetAxis("Horizontal");
+		float x = Input.GetAxis ("Horizontal");
 
-		Move (new Vector2 (x, _Rigidbody2D.velocity.y));
+		Move (new Vector2 (x, 0f));
+
+		if(Input.GetButtonDown ("Jump"))
+		{
+			if(IsGrounded ())
+			{
+				Bounce ();
+			}
+		}
 	}
 
 	private void Move (Vector2 dir)
 	{
-		_Rigidbody2D.velocity = dir * _Speed;
+		_Rigidbody2D.velocity = new Vector2 (dir.x * _Speed * Time.deltaTime, _Rigidbody2D.velocity.y);
 	}
 
 	private bool IsGrounded ()
@@ -61,12 +69,15 @@ public class PlayerController : MonoBehaviour
 
 	private void OnTriggerEnter2D (Collider2D other)
 	{
-		if(other.gameObject.CompareTag("Respawn"))
-			Bounce();
+		if(other.gameObject.CompareTag ("Respawn"))
+		{
+			_Rigidbody2D.velocity = new Vector2 (_Rigidbody2D.velocity.x, 0f);
+			Bounce ();
+		}
 	}
 
 	private void Bounce ()
 	{
-		_Rigidbody2D.AddForce(Vector2.up * _JumpHeight, ForceMode2D.Impulse);
+		_Rigidbody2D.AddForce (Vector2.up * _JumpHeight, ForceMode2D.Impulse);
 	}
 }
