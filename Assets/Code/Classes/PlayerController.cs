@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private float _JumpHeight = 0.0f;
 	[SerializeField] private LayerMask _Ground;
 
+	private float _LastPadPos = 0.0f;
 	private Transform _Transform = null;
 	private Rigidbody2D _Rigidbody2D = null;
 
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
 	private void Update ()
 	{
 		GetInput ();
+		CheckPosition ();
 	}
 
 	private void GetInput ()
@@ -44,17 +46,19 @@ public class PlayerController : MonoBehaviour
 		Move (new Vector2 (x, 0f));
 
 		if(Input.GetButtonDown ("Jump"))
-		{
 			if(IsGrounded ())
-			{
 				Bounce ();
-			}
-		}
 	}
 
 	private void Move (Vector2 dir)
 	{
 		_Rigidbody2D.velocity = new Vector2 (dir.x * _Speed * Time.deltaTime, _Rigidbody2D.velocity.y);
+	}
+
+	private void CheckPosition ()
+	{
+		if(_Transform.position.y < _LastPadPos - 15f)
+			Time.timeScale = 0.0f;
 	}
 
 	private bool IsGrounded ()
@@ -72,6 +76,7 @@ public class PlayerController : MonoBehaviour
 		if(other.gameObject.CompareTag ("Respawn"))
 		{
 			_Rigidbody2D.velocity = new Vector2 (_Rigidbody2D.velocity.x, 0f);
+			_LastPadPos = other.transform.position.y;
 			Bounce ();
 		}
 	}
