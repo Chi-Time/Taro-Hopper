@@ -3,7 +3,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
      public float InterpVelocity = 0f;
-     public float Smoothing = 5f;
+     public float Smoothing = 12f;
      public float MinDistance = 0f;
      public float FollowDistance = 0f;
      public GameObject Target = null;
