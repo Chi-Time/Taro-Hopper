@@ -44,8 +44,10 @@ public class PadGenerator : MonoBehaviour
         {
             float pos = Random.Range (_MinRange, _MaxRange);
             float rndH = Random.Range (_MinHeight, _MaxHeight);
+            float rndW = Random.Range (_MinWidth, _MaxWidth);
 
             if(_LastPad != null)
+               pad.transform.position = new Vector3 (_LastPad.position.x + rndW, _LastPad.position.y + rndH, 0f);
             else
                 pad.transform.position = new Vector3 (pos, 10f, 0f);
 
