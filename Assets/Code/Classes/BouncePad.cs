@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BouncePad : MonoBehaviour 
+public class BouncePad : MonoBehaviour
 {
 	[SerializeField] private float _Speed = 0.0f;
 	[SerializeField] private float _FadeTime = 1.0f;
@@ -50,8 +50,9 @@ public class BouncePad : MonoBehaviour
 
 		for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
 		{
-			Color newColor = new Color(1, 1, 1, Mathf.Lerp (alpha,aValue,t));
-			_SpriteRenderer.material.color = newColor;
+			Color newAlpha = new Color (1, 1, 1, Mathf.Lerp (alpha, aValue, t));
+			_SpriteRenderer.material.color = newAlpha;
+
 			yield return null;
 		}
 	}
