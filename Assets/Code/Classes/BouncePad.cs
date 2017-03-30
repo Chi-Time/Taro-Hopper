@@ -11,6 +11,7 @@ public class BouncePad : MonoBehaviour
 	private Transform _Player = null;
 	private Transform _Transform = null;
 	private Rigidbody2D _Rigidbody2D = null;
+	private GameController _GameController = null;
 	private SpriteRenderer _SpriteRenderer = null;
 
 	private void Awake ()
@@ -18,6 +19,7 @@ public class BouncePad : MonoBehaviour
 		_Transform = GetComponent<Transform> ();
 		_Rigidbody2D = GetComponent<Rigidbody2D> ();
 		_SpriteRenderer = GetComponent<SpriteRenderer> ();
+		_GameController = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController> ();
 	}
 
 	public void Initialise (PadPool pool)
@@ -92,7 +94,10 @@ public class BouncePad : MonoBehaviour
 	private void OnTriggerEnter2D (Collider2D other)
 	{
 		if(other.gameObject.CompareTag ("Player"))
+		{
+			_GameController.Score++;
 			Cull ();
+		}
 	}
 
 	private void Cull ()
