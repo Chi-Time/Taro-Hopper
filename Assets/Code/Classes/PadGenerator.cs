@@ -9,7 +9,6 @@ public class PadGenerator : MonoBehaviour
     [SerializeField] private float _MinWidth = -6f, _MaxWidth = 6f;
     [SerializeField] private PadPool _Pool = new PadPool ();
 
-    private Transform _Player = null;
     private Transform _LastPad = null;
 
     private void Awake ()
@@ -20,7 +19,6 @@ public class PadGenerator : MonoBehaviour
     private void Initialise ()
     {
         _Pool.Initialise ();
-        _Player = GameObject.FindGameObjectWithTag ("Player").transform;
     }
 
     private void Start ()
