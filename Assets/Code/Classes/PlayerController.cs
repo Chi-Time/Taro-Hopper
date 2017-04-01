@@ -53,11 +53,16 @@ public class PlayerController : MonoBehaviour
 	private void Move (Vector2 dir)
 	{
 		_Rigidbody2D.velocity = new Vector2 (dir.x * _Speed * Time.deltaTime, _Rigidbody2D.velocity.y);
+
+		if(dir.x > 0)
+			_Transform.localScale = new Vector3 (1, 1, 1);
+		else if (dir.x < 0)
+			_Transform.localScale = new Vector3 (-1, 1, 1);
 	}
 
 	private void CheckPosition ()
 	{
-		if(_Transform.position.y < _LastPadPos - 15f)
+		if(_Transform.position.y < _LastPadPos - 20f)
 			Time.timeScale = 0.0f;
 	}
 
