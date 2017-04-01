@@ -256,6 +256,11 @@ Prefab:
       propertyPath: Target
       value: 
       objectReference: {fileID: 1360561638}
+    - target: {fileID: 20641111841639286, guid: dc0b485f9add3904e97e071e1ccf63a1,
+        type: 2}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc0b485f9add3904e97e071e1ccf63a1, type: 2}
   m_IsPrefabParent: 0
@@ -301,6 +306,31 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4637369267430364, guid: ea11ae2e873989c4f8891c0ee0c3d9c2, type: 2}
       propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114977665545747262, guid: ea11ae2e873989c4f8891c0ee0c3d9c2,
+        type: 2}
+      propertyPath: _MinRange
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114977665545747262, guid: ea11ae2e873989c4f8891c0ee0c3d9c2,
+        type: 2}
+      propertyPath: _MaxRange
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114977665545747262, guid: ea11ae2e873989c4f8891c0ee0c3d9c2,
+        type: 2}
+      propertyPath: _MinWidth
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114977665545747262, guid: ea11ae2e873989c4f8891c0ee0c3d9c2,
+        type: 2}
+      propertyPath: _MaxWidth
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114977665545747262, guid: ea11ae2e873989c4f8891c0ee0c3d9c2,
+        type: 2}
+      propertyPath: _MaxHeight
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
