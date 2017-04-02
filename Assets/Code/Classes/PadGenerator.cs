@@ -5,8 +5,8 @@ public class PadGenerator : MonoBehaviour
 {
     [SerializeField] private float _MinDelay = 0.2f, _MaxDelay = 0.5f;
     [SerializeField] private float _MinRange = -4f, _MaxRange = 4f;
-    [SerializeField] private float _MinHeight = 1f, _MaxHeight = 2f;
-    [SerializeField] private float _MinWidth = -6f, _MaxWidth = 6f;
+    [SerializeField] private float _MinHeight = 1f, _MaxHeight = 3.5f;
+    [SerializeField] private float _MinWidth = -7f, _MaxWidth = 7f;
     [SerializeField] private PadPool _Pool = new PadPool ();
 
     private Transform _LastPad = null;
