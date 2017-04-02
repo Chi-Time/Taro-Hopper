@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] private UIMenuController _MenuScreen = null;
-    [SerializeField] private UIGameController _GameScreen = null;
-    [SerializeField] private UIPauseController _PauseScreen = null;
-    [SerializeField] private UIGameOverController _GameOverScreen = null;
+    public UIMenuController MenuScreen = null;
+    public UIGameController GameScreen = null;
+    public UIPauseController PauseScreen = null;
+    public UIGameOverController GameOverScreen = null;
 
     private void Awake ()
     {
@@ -14,6 +14,7 @@ public class UIController : MonoBehaviour
 
     private void Intialise ()
     {
+        EventManager.OnStateChanged += OnStateSwitched;
     }
 
     private void Start ()
@@ -30,27 +31,32 @@ public class UIController : MonoBehaviour
         switch(state)
         {
         case GameState.Menu:
-            SwitchScreen (_MenuScreen.gameObject);
+            SwitchScreen (MenuScreen.gameObject);
             break;
         case GameState.Game:
-            SwitchScreen (_GameScreen.gameObject);
+            SwitchScreen (GameScreen.gameObject);
             break;
         case GameState.Pause:
-            SwitchScreen (_PauseScreen.gameObject);
+            SwitchScreen (PauseScreen.gameObject);
             break;
         case GameState.GameOver:
-            SwitchScreen (_GameOverScreen.gameObject);
+            SwitchScreen (GameOverScreen.gameObject);
             break;
         }
     }
 
     private void SwitchScreen (GameObject screen)
     {
-        _MenuScreen.gameObject.SetActive (false);
-        _GameScreen.gameObject.SetActive (false);
-        _PauseScreen.gameObject.SetActive (false);
-        _GameOverScreen.gameObject.SetActive (false);
+        MenuScreen.gameObject.SetActive (false);
+        GameScreen.gameObject.SetActive (false);
+        PauseScreen.gameObject.SetActive (false);
+        GameOverScreen.gameObject.SetActive (false);
 
         screen.SetActive (true);
+    }
+
+    private void OnDestroy ()
+    {
+        EventManager.OnStateChanged -= OnStateSwitched;
     }
 }
