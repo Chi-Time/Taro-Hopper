@@ -16,9 +16,15 @@ public class BouncePad : MonoBehaviour
 
 	private void Awake ()
 	{
+		SetReferences ();
+	}
+
+	private void SetReferences ()
+	{
 		_Transform = GetComponent<Transform> ();
 		_Rigidbody2D = GetComponent<Rigidbody2D> ();
 		_SpriteRenderer = GetComponent<SpriteRenderer> ();
+		_Player = GameObject.FindGameObjectWithTag ("Player").transform;
 		_GameController = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController> ();
 	}
 
@@ -37,8 +43,6 @@ public class BouncePad : MonoBehaviour
 		_Rigidbody2D.gravityScale = 0.0f;
 		_Rigidbody2D.isKinematic = true;
 		_Rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
-
-		_Player = GameObject.FindGameObjectWithTag ("Player").transform;
 	}
 
 	private void OnEnable ()
@@ -87,13 +91,13 @@ public class BouncePad : MonoBehaviour
 
 	private void CheckPosition ()
 	{
-		if(_Transform.position.y < (_Player.position.y - _CullBoundary))
+		if (_Transform.position.y < (_Player.position.y - _CullBoundary))
 			Cull ();
 	}
 
 	private void OnTriggerEnter2D (Collider2D other)
 	{
-		if(other.gameObject.CompareTag ("Player"))
+		if (other.gameObject.CompareTag ("Player"))
 		{
 			_GameController.Score++;
 			Cull ();
