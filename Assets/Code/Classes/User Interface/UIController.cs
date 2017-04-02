@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] private GameObject _MenuScreen = null;
-    [SerializeField] private GameObject _GameScreen = null;
-    [SerializeField] private GameObject _PauseScreen = null;
-    [SerializeField] private GameObject _GameOverScreen = null;
+    [SerializeField] private UIMenuController _MenuScreen = null;
+    [SerializeField] private UIGameController _GameScreen = null;
+    [SerializeField] private UIPauseController _PauseScreen = null;
+    [SerializeField] private UIGameOverController _GameOverScreen = null;
 
     private void Awake ()
     {
@@ -30,26 +30,26 @@ public class UIController : MonoBehaviour
         switch(state)
         {
         case GameState.Menu:
-            SwitchScreen (_MenuScreen);
+            SwitchScreen (_MenuScreen.gameObject);
             break;
         case GameState.Game:
-            SwitchScreen (_GameScreen);
+            SwitchScreen (_GameScreen.gameObject);
             break;
         case GameState.Pause:
-            SwitchScreen (_PauseScreen);
+            SwitchScreen (_PauseScreen.gameObject);
             break;
         case GameState.GameOver:
-            SwitchScreen (_GameOverScreen);
+            SwitchScreen (_GameOverScreen.gameObject);
             break;
         }
     }
 
     private void SwitchScreen (GameObject screen)
     {
-        _MenuScreen.SetActive (false);
-        _GameScreen.SetActive (false);
-        _PauseScreen.SetActive (false);
-        _GameOverScreen.SetActive (false);
+        _MenuScreen.gameObject.SetActive (false);
+        _GameScreen.gameObject.SetActive (false);
+        _PauseScreen.gameObject.SetActive (false);
+        _GameOverScreen.gameObject.SetActive (false);
 
         screen.SetActive (true);
     }
