@@ -10,6 +10,7 @@ public class UIMenuController : MonoBehaviour
     public void StartGame ()
     {
         //TODO: Add in state switch to game scene.
+        EventManager.ChangeState (GameState.Game);
     }
 
     public void Credits ()
@@ -36,10 +37,12 @@ public class UIMenuController : MonoBehaviour
     public void MuteMusic ()
     {
         //TODO: Connect with audio player and mute music.
+
     }
 
     public void MuteSFX ()
     {
         //TODO: Connect with audio players and mute music.
+
     }
 }
