@@ -6,6 +6,8 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private int _Score = 0;
 
+    private UIController _UIController = null;
+
     private void Awake ()
     {
         Initialise ();
@@ -13,6 +15,9 @@ public class GameController : MonoBehaviour
 
     private void Initialise ()
     {
+        _UIController = GameObject.Find("UI").GetComponent<UIController> ();
+
+        EventManager.OnStateChanged += OnStateSwitched;
     }
 
     private void Start ()
@@ -32,5 +37,27 @@ public class GameController : MonoBehaviour
     private void ChangeScore (int score)
     {
         _Score = score;
+
+        _UIController.GameScreen.UpdateScore (_Score);
+    }
+
+    private void OnStateSwitched (GameState state)
+    {
+        switch (state)
+        {
+            case GameState.Game:
+                Time.timeScale = 1.0f;
+                break;
+            case GameState.Menu:
+            case GameState.Pause:
+            case GameState.GameOver:
+                Time.timeScale = 0.0f;
+                break;
+        }
+    }
+
+    private void OnDestroy ()
+    {
+        EventManager.OnStateChanged -= OnStateSwitched;
     }
 }
