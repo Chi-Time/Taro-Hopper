@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public int Score { get { return _Score; } set {ChangeScore(value); } }
+    public int Score { get { return _Score; } set { ChangeScore(value); } }
 
     [SerializeField] private int _Score = 0;
 
@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour
     {
         _Score = score;
 
-        _UIController.GameScreen.UpdateScore (_Score);
+        _UIController.GameScreen.UpdateScoreLabel (_Score);
     }
 
     private void OnStateSwitched (GameState state)
