@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 public class UIGameController : MonoBehaviour
 {
-    private Text _CurrentScore = null;
+    [SerializeField] private Text _ScoreLabel = null;
 
-    public void UpdateScore (int score)
+    public void UpdateScoreLabel (int score)
     {
-        _CurrentScore.text = score.ToString();
+        _ScoreLabel.text = score.ToString();
     }
 }
