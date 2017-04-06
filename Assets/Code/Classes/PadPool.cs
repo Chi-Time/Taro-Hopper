@@ -65,13 +65,22 @@ public class PadPool
 		pad.transform.position = Vector3.zero;
 	}
 
-    // Loop through and reset every active pad in the scene.
+    // Recursively loop and reset every active object in game.
     public void ResetPool ()
     {
         for(int i = 0; i < _ActivePads.Count; i++)
         {
             var pad = _ActivePads[i];
-            ReturnToPool (pad);
+            pad.Cull ();
+
+            // Recursively loop through the list until every active object is removed.
+            CheckPool ();
         }
+    }
+
+    private void CheckPool ()
+    {
+        if (_ActivePads.Count > 0)
+            ResetPool ();
     }
 }
