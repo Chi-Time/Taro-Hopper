@@ -23,10 +23,10 @@ public class PadGenerator : MonoBehaviour
 
     private void Start ()
     {
-        SetDefaults ();
+        StartSpawner ();
     }
 
-    private void SetDefaults ()
+    private void StartSpawner ()
     {
         float delay = Random.Range (_MinDelay, _MaxDelay);
         StartCoroutine (SpawnPad (delay));
@@ -57,4 +57,11 @@ public class PadGenerator : MonoBehaviour
         StopCoroutine (SpawnPad (newDelay));
         StartCoroutine (SpawnPad (newDelay));
     }
+
+    public void Restart ()
+    {
+        StopCoroutine (SpawnPad (0f));
+
+        _Pool.ResetPool ();
+    } 
 }
