@@ -399,6 +399,11 @@ Prefab:
       propertyPath: m_TagString
       value: Generator
       objectReference: {fileID: 0}
+    - target: {fileID: 114977665545747262, guid: ea11ae2e873989c4f8891c0ee0c3d9c2,
+        type: 2}
+      propertyPath: _Pool._PoolSize
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea11ae2e873989c4f8891c0ee0c3d9c2, type: 2}
   m_IsPrefabParent: 0
@@ -518,6 +523,11 @@ Prefab:
     - target: {fileID: 1955284635255072, guid: 5398aae8b9671514293b0c645fb55c30, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114700014113215706, guid: 5398aae8b9671514293b0c645fb55c30,
+        type: 2}
+      propertyPath: m_Text
+      value: 'Score: 0'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5398aae8b9671514293b0c645fb55c30, type: 2}
