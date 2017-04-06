@@ -29,10 +29,10 @@ public class GameController : MonoBehaviour
     {
     }
 
-    void OnGUI ()
-    {
-        GUI.Label (new Rect (100, 150, 450, 450), "SCORE: " + _Score.ToString ());
-    }
+    //void OnGUI ()
+    //{
+    //    GUI.Label (new Rect (100, 150, 450, 450), "SCORE: " + _Score.ToString ());
+    //}
 
     private void ChangeScore (int score)
     {
@@ -53,7 +53,15 @@ public class GameController : MonoBehaviour
             case GameState.GameOver:
                 Time.timeScale = 0.0f;
                 break;
+            case GameState.Restart:
+                RestartGame ();
+                break;
         }
+    }
+
+    private void RestartGame ()
+    {
+        //TODO: Add in a way to reset all objects for game restart.
     }
 
     private void OnDestroy ()
