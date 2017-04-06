@@ -14,7 +14,7 @@ public class UIGameOverController : MonoBehaviour
     public void RestartGame ()
     {
         //TODO: switch game states.
-        SceneManager.LoadScene (0);
+        EventManager.ChangeState (GameState.Restart);
     }
 
     public void ReturnToMenu ()
