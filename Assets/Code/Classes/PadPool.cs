@@ -6,7 +6,6 @@ public class PadPool
 {
 	[SerializeField] private int _PoolSize = 0;
 	[SerializeField] private BouncePad _PadPrefab = null;
-
 	[SerializeField] private List<BouncePad> _ActivePads = new List<BouncePad> ();
  	[SerializeField] private List<BouncePad> _InactivePads = new List <BouncePad> ();
 

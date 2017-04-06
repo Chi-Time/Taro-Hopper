@@ -6,13 +6,11 @@ public class UIPauseController : MonoBehaviour
     public void MuteMusic (bool isMuted)
     {
         //TODO: Connect with audio player and mute music.
-
     }
 
     public void MuteSFX (bool isMuted)
     {
         //TODO: Connect with audio players and mute music.
-
     }
 
     public void ReturnToMenu ()
