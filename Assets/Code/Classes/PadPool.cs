@@ -65,4 +65,14 @@ public class PadPool
 		pad.gameObject.SetActive (false);
 		pad.transform.position = Vector3.zero;
 	}
+
+    // Loop through and reset every active pad in the scene.
+    public void ResetPool ()
+    {
+        for(int i = 0; i < _ActivePads.Count; i++)
+        {
+            var pad = _ActivePads[i];
+            ReturnToPool (pad);
+        }
+    }
 }
