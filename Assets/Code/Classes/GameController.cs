@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
 
     private void SetDefaults ()
     {
+        EventManager.ChangeState (GameState.Menu);
     }
 
     //void OnGUI ()
@@ -61,7 +62,11 @@ public class GameController : MonoBehaviour
 
     private void RestartGame ()
     {
-        //TODO: Add in a way to reset all objects for game restart.
+        GameObject.FindGameObjectWithTag ("Generator").GetComponent<PadGenerator> ().Restart ();
+        GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ().Restart ();
+        _Score = 0;
+
+        EventManager.ChangeState (GameState.Game);
     }
 
     private void OnDestroy ()
