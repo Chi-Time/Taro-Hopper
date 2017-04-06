@@ -104,7 +104,7 @@ public class BouncePad : MonoBehaviour
 		}
 	}
 
-	private void Cull ()
+	public void Cull ()
 	{
 		_Pool.ReturnToPool (this);
 	}
