@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 	{
 		_Transform = GetComponent<Transform> ();
 		_Rigidbody2D = GetComponent<Rigidbody2D> ();
-	}
+    }
 
 	private void Start ()
 	{
@@ -62,8 +62,8 @@ public class PlayerController : MonoBehaviour
 
 	private void CheckPosition ()
 	{
-		if(_Transform.position.y < _LastPadPos - 20f)
-			Time.timeScale = 0.0f;
+        if (_Transform.position.y < _LastPadPos - 20f)
+            EventManager.ChangeState (GameState.GameOver);
 	}
 
 	private bool IsGrounded ()
@@ -90,4 +90,10 @@ public class PlayerController : MonoBehaviour
 	{
 		_Rigidbody2D.AddForce (Vector2.up * _JumpHeight, ForceMode2D.Impulse);
 	}
+
+    public void Restart ()
+    {
+        _Transform.position = Vector3.zero;
+        _Rigidbody2D.velocity = Vector3.zero;
+    }
 }
