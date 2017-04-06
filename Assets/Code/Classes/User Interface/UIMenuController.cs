@@ -34,13 +34,13 @@ public class UIMenuController : MonoBehaviour
         Application.Quit ();
     }
 
-    public void MuteMusic ()
+    public void MuteMusic (bool isMuted)
     {
         //TODO: Connect with audio player and mute music.
 
     }
 
-    public void MuteSFX ()
+    public void MuteSFX (bool isMuted)
     {
         //TODO: Connect with audio players and mute music.
 
