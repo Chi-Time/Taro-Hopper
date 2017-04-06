@@ -7,6 +7,6 @@ public class UIGameController : MonoBehaviour
 
     public void UpdateScoreLabel (int score)
     {
-        _ScoreLabel.text = score.ToString();
+        _ScoreLabel.text = "Score: " + score.ToString();
     }
 }
