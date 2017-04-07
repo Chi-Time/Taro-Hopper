@@ -30,16 +30,16 @@ public class PadGenerator : MonoBehaviour
     private void GenerateField ()
     {
         for (int i = 0; i < 15; i++)
-            Spawn ();
+            SpawnPad ();
     }
 
     private void StartSpawner ()
     {
         float delay = Random.Range (_MinDelay, _MaxDelay);
-        StartCoroutine (SpawnPad (delay));
+        StartCoroutine (Spawn (delay));
     }
 
-    private void Spawn ()
+    private void SpawnPad ()
     {
         var pad = _Pool.RetrieveFromPool ();
 
@@ -58,21 +58,21 @@ public class PadGenerator : MonoBehaviour
         }
     }
 
-    private IEnumerator SpawnPad (float delay)
+    private IEnumerator Spawn (float delay)
     {
         yield return new WaitForSeconds (delay);
 
-        Spawn ();
+        SpawnPad ();
 
         float newDelay = Random.Range (_MinDelay, _MaxDelay);
 
-        StopCoroutine (SpawnPad (newDelay));
-        StartCoroutine (SpawnPad (newDelay));
+        StopCoroutine (Spawn (newDelay));
+        StartCoroutine (Spawn (newDelay));
     }
 
     public void Restart ()
     {
-        StopCoroutine (SpawnPad (0f));
+        StopCoroutine (Spawn (0f));
         _LastPad = null;
 
         //TODO: Re-call generate field every time restart happens.
