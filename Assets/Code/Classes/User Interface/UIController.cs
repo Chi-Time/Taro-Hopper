@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    public UIMenuController MenuScreen = null;
-    public UIGameController GameScreen = null;
-    public UIPauseController PauseScreen = null;
-    public UIGameOverController GameOverScreen = null;
+    [HideInInspector] public UIMenuController MenuScreen = null;
+    [HideInInspector] public UIGameController GameScreen = null;
+    [HideInInspector] public UIPauseController PauseScreen = null;
+    [HideInInspector] public UIGameOverController GameOverScreen = null;
 
     private void Awake ()
     {
@@ -14,6 +14,11 @@ public class UIController : MonoBehaviour
 
     private void Intialise ()
     {
+        MenuScreen = GameObjectUtilities.GetChildComponent<UIMenuController> (this.transform);
+        GameScreen = GameObjectUtilities.GetChildComponent<UIGameController> (this.transform);
+        PauseScreen = GameObjectUtilities.GetChildComponent<UIPauseController> (this.transform);
+        GameOverScreen = GameObjectUtilities.GetChildComponent<UIGameOverController> (this.transform);
+
         EventManager.OnStateChanged += OnStateSwitched;
     }
 
@@ -28,20 +33,20 @@ public class UIController : MonoBehaviour
 
     private void OnStateSwitched (GameState state)
     {
-        switch(state)
+        switch (state)
         {
-        case GameState.Menu:
-            SwitchScreen (MenuScreen.gameObject);
-            break;
-        case GameState.Game:
-            SwitchScreen (GameScreen.gameObject);
-            break;
-        case GameState.Pause:
-            SwitchScreen (PauseScreen.gameObject);
-            break;
-        case GameState.GameOver:
-            SwitchScreen (GameOverScreen.gameObject);
-            break;
+            case GameState.Menu:
+                SwitchScreen (MenuScreen.gameObject);
+                break;
+            case GameState.Game:
+                SwitchScreen (GameScreen.gameObject);
+                break;
+            case GameState.Pause:
+                SwitchScreen (PauseScreen.gameObject);
+                break;
+            case GameState.GameOver:
+                SwitchScreen (GameOverScreen.gameObject);
+                break;
         }
     }
 
