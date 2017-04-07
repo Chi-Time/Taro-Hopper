@@ -529,6 +529,11 @@ Prefab:
       propertyPath: m_Text
       value: 'Score: 0'
       objectReference: {fileID: 0}
+    - target: {fileID: 114998268485422544, guid: 5398aae8b9671514293b0c645fb55c30,
+        type: 2}
+      propertyPath: MenuScreen
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5398aae8b9671514293b0c645fb55c30, type: 2}
   m_IsPrefabParent: 0
