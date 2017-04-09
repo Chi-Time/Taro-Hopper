@@ -9,6 +9,5 @@ public static class EventManager
     public static void ChangeState (GameState state)
     {
         OnStateChanged (state);
-        Debug.Log ("Current game state is: " + state.ToString ());
     }
 }
