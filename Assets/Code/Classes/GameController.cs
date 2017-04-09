@@ -30,11 +30,6 @@ public class GameController : MonoBehaviour
         EventManager.ChangeState (GameState.Menu);
     }
 
-    //void OnGUI ()
-    //{
-    //    GUI.Label (new Rect (100, 150, 450, 450), "SCORE: " + _Score.ToString ());
-    //}
-
     private void ChangeScore (int score)
     {
         _Score = score;
@@ -50,22 +45,33 @@ public class GameController : MonoBehaviour
                 Time.timeScale = 1.0f;
                 break;
             case GameState.Menu:
+                ResetGame ();
+                break;
             case GameState.Pause:
-            case GameState.GameOver:
                 Time.timeScale = 0.0f;
                 break;
+            case GameState.GameOver:
+                Time.timeScale = 0.0f;
+                _UIController.GameOverScreen.UpdateFinalScoreLabel (_Score);
+                break;
             case GameState.Restart:
+                ResetGame ();
                 RestartGame ();
                 break;
         }
     }
 
+    private void ResetGame ()
+    {
+        Time.timeScale = 0.0f;
+        GameObject.FindGameObjectWithTag ("Generator").GetComponent<PadGenerator> ().Restart ();
+        GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ().Kill ();
+        GameObject.FindGameObjectWithTag ("MainCamera").transform.position = new Vector3 (0f, 3f, -10f);
+        Score = 0;
+    }
+
     private void RestartGame ()
     {
-        GameObject.FindGameObjectWithTag ("Generator").GetComponent<PadGenerator> ().Restart ();
-        GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ().Restart ();
-        _Score = 0;
-
         EventManager.ChangeState (GameState.Game);
     }
 
