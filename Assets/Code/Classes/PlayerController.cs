@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
 	private void CheckPosition ()
 	{
         if (_Transform.position.y < _LastPadPos - 20f)
-            EventManager.ChangeState (GameState.GameOver);
+            Kill ();
 	}
 
 	private bool IsGrounded ()
@@ -91,9 +91,12 @@ public class PlayerController : MonoBehaviour
 		_Rigidbody2D.AddForce (Vector2.up * _JumpHeight, ForceMode2D.Impulse);
 	}
 
-    public void Restart ()
+    public void Kill ()
     {
         _Transform.position = Vector3.zero;
         _Rigidbody2D.velocity = Vector3.zero;
+        _LastPadPos = 0f;
+
+        EventManager.ChangeState (GameState.GameOver);
     }
 }
