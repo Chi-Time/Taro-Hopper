@@ -47,6 +47,9 @@ public class UIController : MonoBehaviour
             case GameState.GameOver:
                 SwitchScreen (GameOverScreen.gameObject);
                 break;
+            case GameState.Restart:
+                SwitchScreen (GameScreen.gameObject);
+                break;
         }
     }
 
