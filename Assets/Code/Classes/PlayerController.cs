@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
 		_Rigidbody2D.gravityScale = 1.0f;
 		_Rigidbody2D.isKinematic = false;
 		_Rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        _LastPadPos = 0f;
 	}
 
 	private void Update ()
@@ -63,10 +65,10 @@ public class PlayerController : MonoBehaviour
 	private void CheckPosition ()
 	{
         if (_Transform.position.y < _LastPadPos - 20f)
-            Kill ();
-	}
+            EventManager.ChangeState (GameState.GameOver);
+    }
 
-	private bool IsGrounded ()
+    private bool IsGrounded ()
 	{
 		var endPos = new Vector3 (_Transform.position.x, _Transform.position.y - 0.5f, 0);
 
@@ -91,12 +93,10 @@ public class PlayerController : MonoBehaviour
 		_Rigidbody2D.AddForce (Vector2.up * _JumpHeight, ForceMode2D.Impulse);
 	}
 
-    public void Kill ()
+    public void ResetPlayer ()
     {
         _Transform.position = Vector3.zero;
         _Rigidbody2D.velocity = Vector3.zero;
         _LastPadPos = 0f;
-
-        EventManager.ChangeState (GameState.GameOver);
     }
 }
