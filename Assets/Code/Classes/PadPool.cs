@@ -46,8 +46,7 @@ public class PadPool
 			_InactivePads.Remove (pad);
 			_ActivePads.Add (pad);
 
-			pad.gameObject.SetActive (true);
-			pad.transform.position = Vector3.zero;
+            ResetPad (pad);
 
 			return pad;
 		}
@@ -61,9 +60,14 @@ public class PadPool
 		_ActivePads.Remove (pad);
 		_InactivePads.Add (pad);
 
-		pad.gameObject.SetActive (false);
-		pad.transform.position = Vector3.zero;
-	}
+        ResetPad (pad);
+    }
+
+    private void ResetPad (BouncePad pad)
+    {
+        pad.gameObject.SetActive (false);
+        pad.transform.position = Vector3.zero;
+    }
 
     // Recursively loop and reset every active object in game.
     public void ResetPool ()
