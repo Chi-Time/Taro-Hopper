@@ -3,9 +3,13 @@ using System.Collections;
 
 public class PadGenerator : MonoBehaviour
 {
+    [Tooltip("The delay between each bounce pad spawn.")]
     [SerializeField] private float _MinDelay = 0.2f, _MaxDelay = 0.5f;
+    [Tooltip("The initial random range of the pad.")]
     [SerializeField] private float _MinRange = -4f, _MaxRange = 4f;
+    [Tooltip("The height at which the platform can spawn above another.")]
     [SerializeField] private float _MinHeight = 1f, _MaxHeight = 3.5f;
+    [Tooltip("The horizontal range at which the platform can spawn from another.")]
     [SerializeField] private float _MinWidth = -7f, _MaxWidth = 7f;
     [SerializeField] private PadPool _Pool = new PadPool ();
 
