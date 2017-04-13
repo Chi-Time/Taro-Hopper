@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private float _JumpHeight = 8.0f;
 	[SerializeField] private LayerMask _Ground;
 
-	private float _LastPadPos = 0.0f;
+    private bool _HasJumped = false;
+    private float _LastPadPos = 0.0f;
 	private Transform _Transform = null;
 	private Rigidbody2D _Rigidbody2D = null;
 
@@ -45,22 +46,29 @@ public class PlayerController : MonoBehaviour
 	{
 		float x = Input.GetAxis ("Horizontal");
 
-		Move (new Vector2 (x, 0f));
+		MovePlayer (new Vector2 (x, 0f));
 
-		if(Input.GetButtonDown ("Jump"))
-			if(IsGrounded ())
-				Bounce ();
+		if (Input.GetButtonDown ("Jump") && IsGrounded ())
+        {
+            Jump ();
+            _HasJumped = true;
+        }
 	}
 
-	private void Move (Vector2 dir)
+	private void MovePlayer (Vector2 dir)
 	{
 		_Rigidbody2D.velocity = new Vector2 (dir.x * _Speed * Time.deltaTime, _Rigidbody2D.velocity.y);
 
-		if(dir.x > 0)
-			_Transform.localScale = new Vector3 (1, 1, 1);
-		else if (dir.x < 0)
-			_Transform.localScale = new Vector3 (-1, 1, 1);
+        FlipPlayer (dir.x);
 	}
+
+    private void FlipPlayer (float xDir)
+    {
+        if (xDir > 0)
+            _Transform.localScale = new Vector3 (1, 1, 1);
+        else if (xDir < 0)
+            _Transform.localScale = new Vector3 (-1, 1, 1);
+    }
 
 	private void CheckPosition ()
 	{
@@ -72,7 +80,7 @@ public class PlayerController : MonoBehaviour
 	{
 		var endPos = new Vector3 (_Transform.position.x, _Transform.position.y - 0.5f, 0);
 
-		if(Physics2D.Linecast (_Transform.position, endPos, _Ground))
+		if (Physics2D.Linecast (_Transform.position, endPos, _Ground))
 			return true;
 
 		return false;
@@ -80,15 +88,24 @@ public class PlayerController : MonoBehaviour
 
 	private void OnTriggerEnter2D (Collider2D other)
 	{
-		if(other.gameObject.CompareTag ("Respawn"))
-		{
-			_Rigidbody2D.velocity = new Vector2 (_Rigidbody2D.velocity.x, 0f);
-			_LastPadPos = other.transform.position.y;
-			Bounce ();
-		}
+        // Check if player has collided with a bounce pad.
+		if (other.gameObject.CompareTag ("Respawn"))
+            Bounce (other);
+
+        // Check if the player has landed on the floor again.
+        if (other.CompareTag ("Finish") && _HasJumped)
+            EventManager.ChangeState (GameState.GameOver);
 	}
 
-	private void Bounce ()
+    private void Bounce (Collider2D other)
+    {
+        _Rigidbody2D.velocity = new Vector2 (_Rigidbody2D.velocity.x, 0f);
+        _LastPadPos = other.transform.position.y;
+
+        Jump ();
+    }
+
+	private void Jump ()
 	{
 		_Rigidbody2D.AddForce (Vector2.up * _JumpHeight, ForceMode2D.Impulse);
 	}
@@ -97,6 +114,7 @@ public class PlayerController : MonoBehaviour
     {
         _Transform.position = Vector3.zero;
         _Rigidbody2D.velocity = Vector3.zero;
+        _HasJumped = false;
         _LastPadPos = 0f;
     }
 }
