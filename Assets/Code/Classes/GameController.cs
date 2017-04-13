@@ -4,6 +4,8 @@ public class GameController : MonoBehaviour
 {
     public int Score { get { return _Score; } set { ChangeScore(value); } }
 
+    public static GameState CurrentState;
+
     [SerializeField] private int _Score = 0;
 
     private UIController _UIController = null;
@@ -39,6 +41,8 @@ public class GameController : MonoBehaviour
 
     private void OnStateSwitched (GameState state)
     {
+        CurrentState = state;
+
         switch (state)
         {
             case GameState.Game:
