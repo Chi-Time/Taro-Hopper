@@ -44,15 +44,16 @@ public class PlayerController : MonoBehaviour
 
     private void GetInput ()
     {
+        GetMovementInput ();
+        GetJumpInput ();
+        GetPauseInput ();
+    }
+
+    private void GetMovementInput ()
+    {
         float x = Input.GetAxis ("Horizontal");
 
         MovePlayer (new Vector2 (x, 0f));
-
-        if (Input.GetButtonDown ("Jump") && IsGrounded ())
-        {
-            Jump ();
-            _HasJumped = true;
-        }
     }
 
     private void MovePlayer (Vector2 dir)
@@ -68,6 +69,28 @@ public class PlayerController : MonoBehaviour
             _Transform.localScale = new Vector3 (1, 1, 1);
         else if (xDir < 0)
             _Transform.localScale = new Vector3 (-1, 1, 1);
+    }
+
+    private void GetJumpInput ()
+    {
+        if (Input.GetButtonDown ("Jump") && IsGrounded ())
+        {
+            Jump ();
+            _HasJumped = true;
+        }
+    }
+
+    private void Jump ()
+    {
+        _Rigidbody2D.AddForce (Vector2.up * _JumpHeight, ForceMode2D.Impulse);
+    }
+
+    private void GetPauseInput ()
+    {
+        if (Input.GetKeyDown (KeyCode.Escape) && GameController.CurrentState == GameState.Game)
+            EventManager.ChangeState (GameState.Pause);
+        else if (Input.GetKeyDown (KeyCode.Escape) && GameController.CurrentState == GameState.Game)
+            EventManager.ChangeState (GameState.Game);
     }
 
     private void CheckPosition ()
@@ -103,11 +126,6 @@ public class PlayerController : MonoBehaviour
         _LastPadPos = other.transform.position.y;
 
         Jump ();
-    }
-
-    private void Jump ()
-    {
-        _Rigidbody2D.AddForce (Vector2.up * _JumpHeight, ForceMode2D.Impulse);
     }
 
     public void ResetPlayer ()
