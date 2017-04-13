@@ -17,17 +17,15 @@ public class PadPool
 
 	private void GeneratePool ()
 	{
-		var parent = new GameObject ("Pool");
-
 		for(int i = 0; i < _PoolSize; i++)
-			_InactivePads.Add (CreatePad (parent.transform, i));
+			_InactivePads.Add (CreatePad (i));
 	}
 
-	private BouncePad CreatePad (Transform parent, int index)
+	private BouncePad CreatePad (int index)
 	{
 		var go = (GameObject)Object.Instantiate (_PadPrefab.gameObject, Vector3.zero, Quaternion.identity);
 		go.name = index + " Bounce Pad";
-		go.transform.SetParent (parent);
+		go.transform.SetParent (GetParent ());
 		go.SetActive (false);
 
 		// Add pool reference to pad.
@@ -36,6 +34,17 @@ public class PadPool
 
 		return pad;
 	}
+
+    private Transform GetParent ()
+    {
+        if(GameObject.Find("Pool"))
+            return GameObject.Find ("Pool").transform;
+
+        var parent = new GameObject ("Pool");
+        parent.transform.SetParent (GameObject.FindGameObjectWithTag ("Generator").transform);
+
+        return parent.transform;
+    }
 
 	/// Get's and returns a fully defaulted bounce pad from the pool.
 	public BouncePad RetrieveFromPool ()
