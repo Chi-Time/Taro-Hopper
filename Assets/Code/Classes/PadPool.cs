@@ -46,9 +46,10 @@ public class PadPool
 			_InactivePads.Remove (pad);
 			_ActivePads.Add (pad);
 
-            ResetPad (pad);
+            pad.gameObject.SetActive (true);
+            pad.transform.position = Vector3.zero;
 
-			return pad;
+            return pad;
 		}
 
 		return null;
@@ -60,11 +61,6 @@ public class PadPool
 		_ActivePads.Remove (pad);
 		_InactivePads.Add (pad);
 
-        ResetPad (pad);
-    }
-
-    private void ResetPad (BouncePad pad)
-    {
         pad.gameObject.SetActive (false);
         pad.transform.position = Vector3.zero;
     }
