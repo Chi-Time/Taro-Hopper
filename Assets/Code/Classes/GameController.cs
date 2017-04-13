@@ -43,18 +43,23 @@ public class GameController : MonoBehaviour
         {
             case GameState.Game:
                 Time.timeScale = 1.0f;
+                Cursor.visible = false;
                 break;
             case GameState.Menu:
+                Cursor.visible = true;
                 ResetGame ();
                 break;
             case GameState.Pause:
+                Cursor.visible = true;
                 Time.timeScale = 0.0f;
                 break;
             case GameState.GameOver:
+                Cursor.visible = true;
                 Time.timeScale = 0.0f;
                 _UIController.GameOverScreen.UpdateFinalScoreLabel (_Score);
                 break;
             case GameState.Restart:
+                Cursor.visible = true;
                 ResetGame ();
                 RestartGame ();
                 break;
@@ -65,7 +70,7 @@ public class GameController : MonoBehaviour
     {
         Time.timeScale = 0.0f;
         GameObject.FindGameObjectWithTag ("Generator").GetComponent<PadGenerator> ().Restart ();
-        GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ().Kill ();
+        GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ().ResetPlayer ();
         GameObject.FindGameObjectWithTag ("MainCamera").transform.position = new Vector3 (0f, 3f, -10f);
         Score = 0;
     }
