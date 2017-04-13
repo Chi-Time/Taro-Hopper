@@ -2,12 +2,9 @@
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private float _Speed = 250.0f;
-    [SerializeField]
-    private float _JumpHeight = 8.0f;
-    [SerializeField]
-    private LayerMask _Ground;
+    [SerializeField] private float _Speed = 250.0f;
+    [SerializeField] private float _JumpHeight = 8.0f;
+    [SerializeField] private LayerMask _Ground;
 
     private bool _HasJumped = false;
     private float _LastPadPos = 0.0f;
