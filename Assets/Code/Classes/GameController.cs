@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour
                 break;
             case GameState.Menu:
                 Cursor.visible = true;
-                ResetGame ();
+                ResetScene ();
                 break;
             case GameState.Pause:
                 Cursor.visible = true;
@@ -60,13 +60,13 @@ public class GameController : MonoBehaviour
                 break;
             case GameState.Restart:
                 Cursor.visible = true;
-                ResetGame ();
+                ResetScene ();
                 RestartGame ();
                 break;
         }
     }
 
-    private void ResetGame ()
+    private void ResetScene ()
     {
         Time.timeScale = 0.0f;
         GameObject.FindGameObjectWithTag ("Generator").GetComponent<PadGenerator> ().Restart ();
