@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private int _Score = 0;
 
     private UIController _UIController = null;
+    private const string _HighScoreKey = "High Score";
 
     private void Awake ()
     {
@@ -39,6 +40,12 @@ public class GameController : MonoBehaviour
         _UIController.GameScreen.UpdateScoreLabel (_Score);
     }
 
+    private void SaveHighScore ()
+    {
+        if(_Score > PlayerPrefs.GetInt (_HighScoreKey))
+            PlayerPrefs.SetInt (_HighScoreKey, _Score);
+    }
+
     private void OnStateSwitched (GameState state)
     {
         CurrentState = state;
@@ -60,7 +67,8 @@ public class GameController : MonoBehaviour
             case GameState.GameOver:
                 Cursor.visible = true;
                 Time.timeScale = 0.0f;
-                _UIController.GameOverScreen.UpdateFinalScoreLabel (_Score);
+                SaveHighScore ();
+                _UIController.GameOverScreen.UpdateFinalScoreLabel (_Score, PlayerPrefs.GetInt (_HighScoreKey));
                 break;
             case GameState.Restart:
                 Cursor.visible = true;
