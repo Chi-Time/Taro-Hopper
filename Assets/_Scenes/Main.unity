@@ -611,56 +611,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1668043204264766, guid: 5398aae8b9671514293b0c645fb55c30, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1901990750413468, guid: 5398aae8b9671514293b0c645fb55c30, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1035380491506872, guid: 5398aae8b9671514293b0c645fb55c30, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1143967984332328, guid: 5398aae8b9671514293b0c645fb55c30, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1955284635255072, guid: 5398aae8b9671514293b0c645fb55c30, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114700014113215706, guid: 5398aae8b9671514293b0c645fb55c30,
-        type: 2}
-      propertyPath: m_Text
-      value: 'Score: 0'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114998268485422544, guid: 5398aae8b9671514293b0c645fb55c30,
-        type: 2}
-      propertyPath: MenuScreen
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114495483701308904, guid: 5398aae8b9671514293b0c645fb55c30,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114547926303484872, guid: 5398aae8b9671514293b0c645fb55c30,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114473462480692862, guid: 5398aae8b9671514293b0c645fb55c30,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114173823795779370, guid: 5398aae8b9671514293b0c645fb55c30,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5398aae8b9671514293b0c645fb55c30, type: 2}
   m_IsPrefabParent: 0
