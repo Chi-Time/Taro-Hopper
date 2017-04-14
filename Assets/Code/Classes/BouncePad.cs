@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//TODO: Add in support for box break particle effect.
 public class BouncePad : MonoBehaviour
 {
 	[SerializeField] private float _Speed = 2.0f;
 	[SerializeField] private float _FadeTime = 1.0f;
 	[SerializeField] private float _CullBoundary = 10.0f;
-	
-	private PadPool _Pool = null;
+
+    private PadPool _Pool = null;
 	private Transform _Player = null;
 	private Transform _Transform = null;
 	private Rigidbody2D _Rigidbody2D = null;
@@ -24,7 +25,7 @@ public class BouncePad : MonoBehaviour
 		_Transform = GetComponent<Transform> ();
 		_Rigidbody2D = GetComponent<Rigidbody2D> ();
 		_SpriteRenderer = GetComponent<SpriteRenderer> ();
-		_Player = GameObject.FindGameObjectWithTag ("Player").transform;
+        _Player = GameObject.FindGameObjectWithTag ("Player").transform;
 		_GameController = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController> ();
 	}
 
@@ -99,8 +100,8 @@ public class BouncePad : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag ("Player"))
 		{
-			_GameController.Score++;
-			Cull ();
+            Cull ();
+            _GameController.Score++;
 		}
 	}
 
