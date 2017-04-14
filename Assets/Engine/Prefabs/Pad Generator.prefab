@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114977665545747262}
   m_Layer: 0
   m_Name: Pad Generator
-  m_TagString: Untagged
+  m_TagString: Generator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,20 +48,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1610289829261398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7660ad45b058fdc4eb317f8f8af59123, type: 3}
+  m_Script: {fileID: 11500000, guid: 1973d5863c4b45745824948d3fc94434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _MinDelay: 0.2
   _MaxDelay: 0.5
-  _MinRange: -7
-  _MaxRange: 7
-  _MinHeight: 1
-  _MaxHeight: 2
-  _MinWidth: -6
-  _MaxWidth: 6
+  _MinRange: -4
+  _MaxRange: 4
+  _MinHeight: 2
+  _MaxHeight: 3.5
+  _MinWidth: -7
+  _MaxWidth: 7
   _Pool:
-    _PoolSize: 100
-    _PadPrefab: {fileID: 114047253037435300, guid: 3c3806e9f23272544a3c6bd6b231bfe5,
+    _PoolSize: 0
+    _PadPrefab: {fileID: 1297364818207354, guid: 3c3806e9f23272544a3c6bd6b231bfe5,
       type: 2}
     _ActivePads: []
     _InactivePads: []
