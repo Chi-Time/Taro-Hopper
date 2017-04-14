@@ -29,7 +29,7 @@ public class PadPool
 		go.SetActive (false);
 
 		// Add pool reference to pad.
-		var pad = go.GetComponentInChildren<BouncePad> ();
+		var pad = go.GetComponent<BouncePad> ();
 		pad.Initialise (this);
 
 		return pad;
