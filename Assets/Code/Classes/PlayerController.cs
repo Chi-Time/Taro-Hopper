@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown (KeyCode.Escape) && GameController.CurrentState == GameState.Game)
             EventManager.ChangeState (GameState.Pause);
-        else if (Input.GetKeyDown (KeyCode.Escape) && GameController.CurrentState == GameState.Game)
+        else if (Input.GetKeyDown (KeyCode.Escape) && GameController.CurrentState == GameState.Pause)
             EventManager.ChangeState (GameState.Game);
     }
 
