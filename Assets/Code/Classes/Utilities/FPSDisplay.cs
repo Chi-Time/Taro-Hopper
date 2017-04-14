@@ -3,11 +3,13 @@ using System.Collections;
 
 public class FPSDisplay : MonoBehaviour
 {
-    private float deltaTime = 0.0f;
+    [SerializeField] private Color _CounterTextColour = Color.white;
+
+    private float _DeltaTime = 0.0f;
 
     private void Update ()
     {
-        deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+        _DeltaTime += (Time.deltaTime - _DeltaTime) * 0.1f;
     }
 
     private void OnGUI ()
@@ -28,10 +30,10 @@ public class FPSDisplay : MonoBehaviour
 
         style.alignment = TextAnchor.UpperLeft;
         style.fontSize = height * 2 / 100;
-        style.normal.textColor = new Color (0.0f, 0.0f, 0.5f, 1.0f);
+        style.normal.textColor = _CounterTextColour;//new Color (0.0f, 0.0f, 0.5f, 1.0f);
 
-        var msec = deltaTime * 1000.0f;
-        var fps = 1.0f / deltaTime;
+        var msec = _DeltaTime * 1000.0f;
+        var fps = 1.0f / _DeltaTime;
         var text = string.Format ("{0:0.0} ms ({1:0.} fps)", msec, fps);
 
         GUI.Label (rect, text, style);
