@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class PadPool 
 {
 	[SerializeField] private int _PoolSize = 0;
-	[SerializeField] private BouncePad _PadPrefab = null;
+	[SerializeField] private GameObject _PadPrefab = null;
 	[SerializeField] private List<BouncePad> _ActivePads = new List<BouncePad> ();
  	[SerializeField] private List<BouncePad> _InactivePads = new List <BouncePad> ();
 
@@ -29,7 +29,7 @@ public class PadPool
 		go.SetActive (false);
 
 		// Add pool reference to pad.
-		var pad = go.GetComponent<BouncePad> ();
+		var pad = go.GetComponentInChildren<BouncePad> ();
 		pad.Initialise (this);
 
 		return pad;
